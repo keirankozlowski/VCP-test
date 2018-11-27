@@ -1,0 +1,18 @@
+{
+  "name": "VCP-test-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Keiran Kozlowski",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0"
+  }
+}
