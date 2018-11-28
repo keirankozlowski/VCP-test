@@ -11,7 +11,6 @@ class App extends Component {
     return (
       <div>
         <header>
-          <p>Hello World</p>
           <Route exact path={routes.LOGIN} component={LoginView} />
           <Route exact path={routes.NON_AUTHENTICATED} component={NonAuthenticatedView} />
           <Route exact path={routes.AUTHENTICATED} component={AuthenticatedView} />
