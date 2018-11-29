@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 // const helmet = require('helmet');
 
 // const cors = require('cors');
@@ -16,6 +17,7 @@ const bodyParser = require('body-parser');
 //     db.close();
 // });
 
+mongoose.connect('mongodb://localhost/authentication');
 const server = express();
 
 // MIDDLEWARE
