@@ -1,4 +1,16 @@
+const jwt = require('jsonwebtoken');
+
 const User = require('../models/user');
+const { jwt_secret } = require('../constants/secret');
+
+signToken = user => {
+    return token = jwt.sign({ 
+        iss: 'auth',
+        sub: user.id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate + 1)
+     }, jwt_secret);
+}
 
 module.exports = {
     signUp: async (req, res, next) => {
@@ -15,7 +27,9 @@ module.exports = {
         });
         await newUser.save();
 
-        res.json({ user: 'created' });
+        const token = signToken(newUser);
+
+        res.status(200).json({ token });
     },
 
     signIn: async (req, res, next) => {
