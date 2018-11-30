@@ -34,6 +34,7 @@ module.exports = {
 
     signIn: async (req, res, next) => {
         console.log('usersController.signIn called');
+        const token = signToken();
     },
     
     nonAuthenticated: async (req, res, next) => {
@@ -42,5 +43,6 @@ module.exports = {
 
     authenticated: async (req, res, next) => {
         console.log('usersController.authenticated called');
+        res.json({ secret: "Very Secret" });
     },
 }

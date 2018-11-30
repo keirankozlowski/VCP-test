@@ -10,7 +10,7 @@ router.route('/signup')
     .post(validateBody(schemas.auth), usersController.signUp);
 
 router.route('/signin')
-    .post(usersController.signIn);
+    .post(validateBody(schemas.auth), passport.authenticate('local', { session: false }), usersController.signIn);
 
 router.route('/non-authenticated')
     .get(usersController.nonAuthenticated);
