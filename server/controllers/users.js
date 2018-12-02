@@ -4,6 +4,7 @@ const User = require('../models/user');
 const { jwt_secret } = require('../constants/secret');
 
 signToken = user => {
+    console.log(user.id, "user.id");
     return token = jwt.sign({ 
         iss: 'auth',
         sub: user.id,
@@ -34,7 +35,23 @@ module.exports = {
 
     signIn: async (req, res, next) => {
         console.log('usersController.signIn called');
-        const token = signToken();
+        const foundUser = User.findOne({ 
+            email: req.value.body.email
+         }).
+         then((foundUser) => {
+            const { _id } = foundUser;
+            console.log(foundUser, 'foundUser in the signIn then statement');
+            foundUser.isValidPassword(req.value.body.password);
+            if(foundUser.isValidPassword(req.value.body.password)) {
+                return res.status(200).send({ message: 'User validated, you are logged in.' });
+            } else {
+                return res.status(500).send({ error: 'nope' });
+            };
+            // const token = signToken(foundUser);
+         }).
+         catch((error) => {
+            return res.status(500).send(error);
+         });
     },
     
     nonAuthenticated: async (req, res, next) => {
