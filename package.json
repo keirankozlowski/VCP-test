@@ -1,0 +1,13 @@
+{
+  "name": "VCP-test",
+  "version": "1.0.0",
+  "main": "./server/index.js",
+  "author": "Keiran <keirankozlowski@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./server/index.js"
+  },
+  "engines": {
+    "node": "^8.11.3"
+  }
+}
