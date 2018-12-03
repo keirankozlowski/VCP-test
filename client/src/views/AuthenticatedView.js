@@ -6,7 +6,6 @@ class AuthenticatedView extends Component {
         return(
             <div>
                 <h1>You are authenticated!</h1>
-                <p>Welcome username</p>
             </div>
         );
     }
