@@ -10,6 +10,8 @@ import LoginView from './views/LoginView';
 import NonAuthenticatedView from './views/NonAuthenticatedView';
 import AuthenticatedView from './views/AuthenticatedView';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 ReactDOM.render(
   <Router>
     <App>
