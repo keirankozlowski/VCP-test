@@ -4,13 +4,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reduxThunk from 'react-thunk';
+import reduxThunk from 'redux-thunk';
 
 import * as routes from "./constants/routes";
 
 import reducers from './reducers';
 
 import App from "./components/App";
+import SignUpView from './views/SignUpView';
 import LoginView from './views/LoginView';
 import NonAuthenticatedView from './views/NonAuthenticatedView';
 import AuthenticatedView from './views/AuthenticatedView';
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Router>
     <App>
       <Route exact path={routes.LOGIN} component={LoginView} />
+      <Route exact path={routes.SIGNUP} component={SignUpView} />
       <Route exact path={routes.NON_AUTHENTICATED} component={NonAuthenticatedView} />
       <Route exact path={routes.AUTHENTICATED} component={AuthenticatedView} />
     </App>

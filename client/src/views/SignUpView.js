@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Button } from 'reactstrap';
 
 import * as actions from '../actions';
-import * as routes from '../constants/routes';
 
 import input from '../components/styling/input';
 
-class LoginView extends Component {
+class SignUpView extends Component {
   constructor(props) {
     super(props);
 
-    this.onSubmitSignIn = this.onSubmitSignIn.bind(this);
+    this.onSubmitSignUp = this.onSubmitSignUp.bind(this);
 
     this.state = {
       email: "",
@@ -22,9 +20,9 @@ class LoginView extends Component {
     };
   }
 
-  async onSubmitSignIn(formData) {
+  async onSubmitSignUp(formData) {
     console.log(formData);
-    // await this.props.signIn(formData);
+    await this.props.signUp(formData);
   };
 
   render() {
@@ -33,32 +31,32 @@ class LoginView extends Component {
       <div className="loginPage">
         <header className="loginHeader">
           <h1>Welcome to The Website!</h1>
-          <h2>Please login:</h2>
         </header>
-        <form className="loginForm" onSubmit={handleSubmit(this.onSubmitSignIn)}>
+
+        <div>
+          <h2>Need to signup?</h2>
+          <p>Make an account: </p>
+          <form className="signupForm" onSubmit={handleSubmit(this.onSubmitSignUp)}>
             <fieldset>
               <Field
-                name="emailLI"
+                name="email"
                 type="text"
-                id="emailLI"
+                id="email"
                 label="Enter your email."
                 placeholder="email"
                 component={input} />
             </fieldset>
             <fieldset>
             <Field
-                name="passwordLI"
+                name="password"
                 type="password"
-                id="passwordLI"
+                id="password"
                 label="Enter your password."
                 placeholder="password"
                 component={input} />
             </fieldset>
-          <Button type="submit">Login</Button>
-        </form>
-        <div>
-          <h2>Need to sign up?</h2>
-          <Link to={routes.SIGNUP}>Click here!</Link>
+            <Button type="submit">Create Account</Button>
+          </form>
         </div>
       </div>
     );
@@ -67,5 +65,5 @@ class LoginView extends Component {
 
 export default compose(
   connect(null, actions),
-  reduxForm({ form:'loginForm' }),
-)(LoginView);
+  reduxForm({ form:'signupForm' }),
+)(SignUpView);
