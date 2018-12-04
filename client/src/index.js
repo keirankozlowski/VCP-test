@@ -17,9 +17,18 @@ import NonAuthenticatedView from './views/NonAuthenticatedView';
 import AuthenticatedView from './views/AuthenticatedView';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Axios from "axios";
+
+const jwtToken = localStorage.getItem('JWT_TOKEN');
+Axios.defaults.headers.common['Authorization'] = jwtToken;
 
 ReactDOM.render(
-  <Provider store={ createStore(reducers, {}, applyMiddleware(reduxThunk)) }>
+  <Provider store={ createStore(reducers, {
+      auth: {
+        token: jwtToken,
+        isAuth: jwtToken ? true : false
+      }
+    }, applyMiddleware(reduxThunk)) }>
   <Router>
     <App>
       <Route exact path={routes.LOGIN} component={LoginView} />

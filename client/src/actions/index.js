@@ -56,7 +56,7 @@ export const signOut = () => {
     axios.defaults.headers.common["Authorization"] = "";
 
     dispatch({
-      type: types.AUTH_SIGN_OUT,
+      type: types.AUTH_SIGNOUT,
       payload: ""
     });
   };

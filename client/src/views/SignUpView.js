@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { Button } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { reduxForm, Field } from "redux-form";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { Button } from "reactstrap";
 
-import * as actions from '../actions';
+import * as actions from "../actions";
+import * as routes from "../constants/routes";
 
-import input from '../components/styling/input';
+import input from "../components/styling/input";
 
 class SignUpView extends Component {
   constructor(props) {
@@ -16,14 +18,14 @@ class SignUpView extends Component {
 
     this.state = {
       email: "",
-      password: "",
+      password: ""
     };
   }
 
   async onSubmitSignUp(formData) {
-    console.log(formData);
     await this.props.signUp(formData);
-  };
+    this.props.history.push("/");
+  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -36,7 +38,10 @@ class SignUpView extends Component {
         <div>
           <h2>Need to signup?</h2>
           <p>Make an account: </p>
-          <form className="signupForm" onSubmit={handleSubmit(this.onSubmitSignUp)}>
+          <form
+            className="signupForm"
+            onSubmit={handleSubmit(this.onSubmitSignUp)}
+          >
             <fieldset>
               <Field
                 name="email"
@@ -44,26 +49,41 @@ class SignUpView extends Component {
                 id="email"
                 label="Enter your email."
                 placeholder="email"
-                component={input} />
+                component={input}
+              />
             </fieldset>
             <fieldset>
-            <Field
+              <Field
                 name="password"
                 type="password"
                 id="password"
                 label="Enter your password."
                 placeholder="password"
-                component={input} />
+                component={input}
+              />
             </fieldset>
             <Button type="submit">Create Account</Button>
           </form>
+        </div>
+        <div>
+          <h2>Need to login?</h2>
+          <Link to={routes.LOGIN}>Click here!</Link>
         </div>
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    errorMsg: state.auth.errorMsg
+  };
+}
+
 export default compose(
-  connect(null, actions),
-  reduxForm({ form:'signupForm' }),
+  connect(
+    mapStateToProps,
+    actions
+  ),
+  reduxForm({ form: "signupForm" })
 )(SignUpView);
