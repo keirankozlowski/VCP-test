@@ -18,21 +18,43 @@ class Navigation extends Component {
 
   render() {
     return (
-      <div>
-        <Link to={routes.LOGIN}>Auth System</Link>
-        <Link to={routes.AUTHENTICATED}>Check if Auth</Link>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        style={{ marginBottom: "30px" }}
+      >
+        <Link to={routes.LOGIN} className="navbar-brand">
+          Auth System
+        </Link>
+        <div>
+          <ul className="navbar-nav mr-auto">
+            <Link to={routes.AUTHENTICATED} className="nav-link">
+              Check If Authenticated
+            </Link>
+          </ul>
+        </div>
 
         <div>
-          { !this.props.isAuth ? 
-            [<Link to={routes.SIGNUP}>Sign Up</Link>,
-            <Link to={routes.LOGIN}>Login</Link>]
-          : null }
+          <ul className="nav navbar-nav ml-auto">
+            {!this.props.isAuth
+              ? [
+                  <li className="nav-item" key="signup">
+                    <Link to={routes.SIGNUP} className="nav-link">Sign Up</Link>
+                  </li>,
+                  <li className="nav-item" key="signin">
+                    <Link to={routes.LOGIN} className="nav-link">Login</Link>
+                  </li>
+                  
+                ]
+              : null}
 
-          { this.props.isAuth ?
-            <Link to={routes.LOGIN} onClick={this.signOut}>Sign Out</Link>
-          : null }
+            {this.props.isAuth ? (
+              <Link to={routes.LOGIN} onClick={this.signOut}>
+                Sign Out
+              </Link>
+            ) : null}
+          </ul>
         </div>
-      </div>
+      </nav>
     );
   }
 }

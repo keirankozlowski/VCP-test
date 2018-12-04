@@ -36,8 +36,8 @@ class SignUpView extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="signupPage">
-        <div>
-          <p>Make an account: </p>
+        <div style={{ marginBottom: "30px" }}>
+          <h2>Make an account: </h2>
           <form
             className="signupForm"
             onSubmit={handleSubmit(this.onSubmitSignUp)}

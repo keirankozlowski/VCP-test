@@ -35,7 +35,7 @@ class LoginView extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="loginPage">
-        <div>
+        <div style={{ marginBottom: "30px" }}>
           <h2>Please login:</h2>
           <form
             className="loginForm"
