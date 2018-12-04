@@ -16,6 +16,7 @@ export const signUp = data => {
       });
 
       localStorage.setItem("JWT_TOKEN", res.data.token);
+      axios.defaults.headers.common["Authorization"] = res.data.token;
     } catch (err) {
       dispatch({
         type: types.AUTH_ERROR,
@@ -28,6 +29,7 @@ export const signUp = data => {
 export const signIn = data => {
   return async dispatch => {
     try {
+      console.log();
       const res = await axios.post(
         "https://vcp-test.herokuapp.com/users/signin",
         data
@@ -37,6 +39,7 @@ export const signIn = data => {
         type: types.AUTH_SIGNIN,
         payload: res.data.token
       });
+      console.log(res);
 
       localStorage.setItem("JWT_TOKEN", res.data.token);
       axios.defaults.headers.common["Authorization"] = res.data.token;

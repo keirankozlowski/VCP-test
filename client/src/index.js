@@ -16,6 +16,7 @@ import SignUpView from "./views/SignUpView";
 import LoginView from "./views/LoginView";
 import NonAuthenticatedView from "./views/NonAuthenticatedView";
 import AuthenticatedView from "./views/AuthenticatedView";
+import auth from './components/HOC/auth';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -47,7 +48,7 @@ ReactDOM.render(
         <Route
           exact
           path={routes.AUTHENTICATED}
-          component={AuthenticatedView}
+          component={auth(AuthenticatedView)}
         />
       </App>
     </Router>
