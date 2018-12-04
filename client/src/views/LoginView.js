@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Button } from 'reactstrap';
+
+import * as actions from '../actions';
 
 import input from '../components/styling/input';
 
 class LoginView extends Component {
   constructor(props) {
     super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       emailLI: "",
@@ -16,14 +22,14 @@ class LoginView extends Component {
     };
   }
 
-  // handleInput = event => {
-  //   event.preventDefault();
-  //   this.setState({ [event.target.name]: event.target.value });
-  // };
-  
-  onSubmit(formData) {
-    console.log('OnSubmit() called');
+  async onSubmitSignUp(formData) {
     console.log(formData);
+    await this.props.signUp(formData);
+  };
+
+  async onSubmitSignIn(formData) {
+    console.log(formData);
+    // await this.props.signUp(formData);
   };
 
   render() {
@@ -34,7 +40,7 @@ class LoginView extends Component {
           <h1>Welcome to The Website!</h1>
           <h2>Please login:</h2>
         </header>
-        <form className="loginForm" onSubmit={handleSubmit(this.onSubmit)}>
+        <form className="loginForm" onSubmit={handleSubmit(this.onSubmitSignIn)}>
             <fieldset>
               <Field
                 name="emailLI"
@@ -59,7 +65,7 @@ class LoginView extends Component {
         <div>
           <h2>Need to signup?</h2>
           <p>Make an account: </p>
-          <form className="signupForm" onSubmit={handleSubmit(this.onSubmit)}>
+          <form className="signupForm" onSubmit={handleSubmit(this.onSubmitSignUp)}>
             <fieldset>
               <Field
                 name="emailSU"
@@ -86,4 +92,7 @@ class LoginView extends Component {
   }
 }
 
-export default reduxForm({ form:'signup-login' })(LoginView);
+export default compose(
+  connect(null, actions),
+  reduxForm({ form:'signup-login' }),
+)(LoginView);

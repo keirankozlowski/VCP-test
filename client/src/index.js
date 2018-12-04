@@ -2,8 +2,9 @@ import * as serviceWorker from "./serviceWorker";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import reduxThunk from 'react-thunk';
 
 import * as routes from "./constants/routes";
 
@@ -17,7 +18,7 @@ import AuthenticatedView from './views/AuthenticatedView';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <Provider store={ createStore(reducers, {}) }>
+  <Provider store={ createStore(reducers, {}, applyMiddleware(reduxThunk)) }>
   <Router>
     <App>
       <Route exact path={routes.LOGIN} component={LoginView} />
