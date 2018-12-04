@@ -24,7 +24,11 @@ class SignUpView extends Component {
 
   async onSubmitSignUp(formData) {
     await this.props.signUp(formData);
-    this.props.history.push("/");
+    if (!this.props.errorMsg) {
+        this.props.history.push("/");
+    } else {
+        alert(this.props.errorMsg);
+    }
   }
 
   render() {
