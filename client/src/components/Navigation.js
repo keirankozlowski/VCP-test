@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import * as routes from "../constants/routes";
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 class Navigation extends Component {
   constructor(props) {
@@ -19,13 +19,31 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to The Website!</h1>
-        <Link to={routes.LOGIN} onClick={this.signOut}>
-          Sign Out
-        </Link>
+        <Link to={routes.LOGIN}>Auth System</Link>
+        <Link to={routes.AUTHENTICATED}>Check if Auth</Link>
+
+        <div>
+          { !this.props.isAuth ? 
+            [<Link to={routes.SIGNUP}>Sign Up</Link>,
+            <Link to={routes.LOGIN}>Login</Link>]
+          : null }
+
+          { this.props.isAuth ?
+            <Link to={routes.LOGIN} onClick={this.signOut}>Sign Out</Link>
+          : null }
+        </div>
       </div>
     );
   }
 }
 
-export default connect(null, actions)(Navigation);
+function mapStateToProps(state) {
+  return {
+    isAuth: state.auth.isAuth
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Navigation);
