@@ -9,7 +9,6 @@ export const signUp = data => {
         "https://vcp-test.herokuapp.com/users/signup",
         data
       );
-      console.log("res", res);
 
       dispatch({
         type: types.AUTH_SIGNUP,

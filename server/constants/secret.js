@@ -1,3 +1,3 @@
 module.exports = {
-    jwt_secret: 'very_secret_secret',
+  jwt_secret: "This resource is only available from the backend"
 };
