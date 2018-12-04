@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import axios from "axios";
 
 import * as routes from "./constants/routes";
 
@@ -17,10 +18,9 @@ import NonAuthenticatedView from './views/NonAuthenticatedView';
 import AuthenticatedView from './views/AuthenticatedView';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Axios from "axios";
 
 const jwtToken = localStorage.getItem('JWT_TOKEN');
-Axios.defaults.headers.common['Authorization'] = jwtToken;
+axios.defaults.headers.common['Authorization'] = jwtToken;
 
 ReactDOM.render(
   <Provider store={ createStore(reducers, {

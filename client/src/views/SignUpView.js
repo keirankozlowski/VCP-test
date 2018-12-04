@@ -25,22 +25,18 @@ class SignUpView extends Component {
   async onSubmitSignUp(formData) {
     await this.props.signUp(formData);
     if (!this.props.errorMsg) {
-        this.props.history.push("/");
+      this.props.history.push("/");
     } else {
-        alert(this.props.errorMsg);
+      alert("409 is duplicate email, 400 is password >6 or <100 length");
+      alert(this.props.errorMsg);
     }
   }
 
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="loginPage">
-        <header className="loginHeader">
-          <h1>Welcome to The Website!</h1>
-        </header>
-
+      <div className="signupPage">
         <div>
-          <h2>Need to signup?</h2>
           <p>Make an account: </p>
           <form
             className="signupForm"

@@ -35,36 +35,35 @@ class LoginView extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="loginPage">
-        <header className="loginHeader">
-          <h1>Welcome to The Website!</h1>
+        <div>
           <h2>Please login:</h2>
-        </header>
-        <form
-          className="loginForm"
-          onSubmit={handleSubmit(this.onSubmitSignIn)}
-        >
-          <fieldset>
-            <Field
-              name="emailLI"
-              type="text"
-              id="emailLI"
-              label="Enter your email."
-              placeholder="email"
-              component={input}
-            />
-          </fieldset>
-          <fieldset>
-            <Field
-              name="passwordLI"
-              type="password"
-              id="passwordLI"
-              label="Enter your password."
-              placeholder="password"
-              component={input}
-            />
-          </fieldset>
-          <Button type="submit">Login</Button>
-        </form>
+          <form
+            className="loginForm"
+            onSubmit={handleSubmit(this.onSubmitSignIn)}
+          >
+            <fieldset>
+              <Field
+                name="email"
+                type="text"
+                id="email"
+                label="Enter your email."
+                placeholder="email"
+                component={input}
+              />
+            </fieldset>
+            <fieldset>
+              <Field
+                name="password"
+                type="password"
+                id="password"
+                label="Enter your password."
+                placeholder="password"
+                component={input}
+              />
+            </fieldset>
+            <Button type="submit">Login</Button>
+          </form>
+        </div>
         <div>
           <h2>Need to sign up?</h2>
           <Link to={routes.SIGNUP}>Click here!</Link>

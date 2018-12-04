@@ -5,7 +5,9 @@ export default props => {
   return (
     <div>
       <Navigation />
-      { props.children }
+      <div className="container">
+        { props.children }
+      </div>
     </div>
   );
 };
