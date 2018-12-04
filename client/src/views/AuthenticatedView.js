@@ -6,6 +6,8 @@ class AuthenticatedView extends Component {
         return(
             <div>
                 <h1>You are authenticated!</h1>
+                <p>Here's your JWT as proof:</p>
+                <p>{ localStorage.getItem('JWT_TOKEN') }</p>
             </div>
         );
     }

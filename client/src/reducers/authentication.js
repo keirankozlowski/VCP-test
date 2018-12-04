@@ -1,10 +1,27 @@
-// const INITIAL_STATE = {
-//     isAuth = false,
-//     token = '',
-//     errorMsg = ''
-// }
+import * as types from '../actions/types';
 
-// export default (state = INITIAL_STATE, action) => {
+const INITIAL_STATE = {
+    isAuth: false,
+    token: '',
+    errorMsg: ''
+}
 
-//     return state;
-// }
+export default (state = INITIAL_STATE, action) => {
+    switch(action.type) {
+        case types.AUTH_SIGNUP:
+            return { 
+                ...state, 
+                token: action.payload,
+                isAuth: true,
+                errorMsg: ''
+            }
+        case types.AUTH_ERROR:
+            return{
+                ...state,
+                errorMsg: action.payload
+            }
+        default:
+            return state;
+    }
+    return state;
+}
