@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import * as routes from "../constants/routes";
+import * as actions from '../actions';
 
 class Navigation extends Component {
   constructor(props) {
@@ -26,4 +28,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+export default connect(null, actions)(Navigation);
