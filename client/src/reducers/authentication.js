@@ -15,6 +15,20 @@ export default (state = INITIAL_STATE, action) => {
                 isAuth: true,
                 errorMsg: ''
             }
+        case types.AUTH_SIGNIN:
+            return {
+                ...state,
+                token: action.payload,
+                isAuth: true,
+                errorMsg: ''
+            }
+        case types.AUTH_SIGNOUT:
+            return {
+                ...state,
+                token: action.payload,
+                isAuth: false,
+                errorMsg: ''
+            }
         case types.AUTH_ERROR:
             return{
                 ...state,
@@ -23,5 +37,4 @@ export default (state = INITIAL_STATE, action) => {
         default:
             return state;
     }
-    return state;
 }
